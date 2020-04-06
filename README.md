@@ -1,22 +1,46 @@
-Bolt app template
-=================
+# Every run
 
-[Bolt](https://slack.dev/bolt) is our framework that lets you build JavaScript-based Slack apps in a flash.
+Run the commands in the `_secrets` file in the terminal.
 
-This project is a simple app template to make it easy to create your first Bolt app. Read our [Getting Started with Bolt](https://api.slack.com/start/building/bolt) guide for a more in-depth tutorial
+```
+serverless deploy
+```
 
-Your Project
-------------
+# Setup on a new machine
 
-- `app.js` contains the primary Bolt app. It imports the Bolt package (`@slack/bolt`) and starts the Bolt app's server. It's where you'll add your app's listeners.
-- `.env` is where you'll put your Slack app's authorization token and signing secret.
-- The `examples/` folder contains a couple of other sample apps that you can peruse to your liking. They show off a few platform features that your app may want to use.
+## Setup serverless
 
+```
+npm install -g serverless
+serverless
+```
 
-Read the [Getting Started guide](https://api.slack.com/start/building/bolt)
--------------------
+This will guide you through the process to sign into serverless for deploys.
 
-Read the [Bolt documentation](https://slack.dev/bolt)
--------------------
+## Create Secret Files
 
-\ ゜o゜)ノ
+Any file that has secrets in it has been added to [.gitignore](.gitignore), so they will need to be recreated on your local machine.
+
+### _secrets
+
+Create a new file at root, `_secrets`.  Paste the following into it for creation:
+
+```
+export AWS_ACCESS_KEY_ID=XXX
+export AWS_SECRET_ACCESS_KEY=XXX
+serverless config credentials --provider aws --key XXX --secret XXX
+```
+
+Find the AWS IAM user.  You'll need to regenerate these tokens for the user, as AWS only shows them once,
+and I didn't store them anywhere to retrieve.  If you are not me, follow the AWS IAM setup instructions at either of the following:
+
+  * https://github.com/serverless/serverless/blob/master/docs/providers/aws/guide/credentials.md
+  * https://www.freecodecamp.org/news/make-a-serverless-slack-app/
+
+### serverless.yml
+
+Create a new file at root, `serverless.yml`.  Paste this into it: https://github.com/johnagan/serverless-slack-app/blob/master/serverless.yml
+
+You'll need to fill out its `xxx...` areas, as desribed here: https://github.com/johnagan/serverless-slack-app
+
+Note that you'll want to change `provider.profile` to default, so that it works with the `serverless config credentials` that we use above.

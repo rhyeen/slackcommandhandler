@@ -1,24 +1,19 @@
 {
-  "name": "bolt-app-template",
+  "name": "slackcommandhandler",
   "version": "0.0.1",
-  "description": "A basic template to spin up a Bolt app for Slack",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
+  "description": "Fulfills the commands given from Slack",
   "dependencies": {
-    "@slack/bolt": "^1.6.0"
-  },
-  "engines": {
-    "node": "11.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/bolt-app-template"
+    "serverless-slack": "1.0.25"
   },
   "license": "MIT",
   "keywords": [
-    "node",
-    "glitch",
-    "express"
+    "slack",
+    "app",
+    "bot",
+    "aws",
+    "lambda",
+    "dynamo",
+    "template",
+    "serverless"
   ]
 }
